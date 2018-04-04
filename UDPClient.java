@@ -14,18 +14,18 @@ class UDPClient
        {
           String sentence = inFromUser.readLine();
           sendData = sentence.getBytes();
-          DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9809);
+          DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9860);
 
           clientSocket.send(sendPacket);
-                     sendData=null;
+                   //  sendData=null;
           DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
           clientSocket.receive(receivePacket);
-          String modifiedSentence = new String(receivePacket.getData());
+          String modifiedSentence = new String(receivePacket.getData(),0,receivePacket.getLength());
           System.out.println("SERVER:" + modifiedSentence);
           
            if(sentence.equals("bye"))
             flag=false;
-
+          ///  receiveData=null;
           }
           
         clientSocket.close();
